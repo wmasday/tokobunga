@@ -3,13 +3,27 @@
  * Flowers CRUD - Modern Dashboard Edition
  * Sakura Florist Solo
  */
+ob_start();
 require_once '../config/db.php';
-include 'header.php';
 
 $action = $_GET['action'] ?? 'list';
 $id = $_GET['id'] ?? null;
 
-// Handle Form Submission
+// Handle Delete Action - MUST BE BEFORE HEADER
+if ($action === 'delete' && $id) {
+    try {
+        $stmt = $pdo->prepare('DELETE FROM flowers WHERE id = ?');
+        $stmt->execute([$id]);
+        header('Location: flowers.php');
+        exit;
+    } catch (PDOException $e) {
+        $error = "Error deleting flower record.";
+    }
+}
+
+include 'header.php';
+
+// Handle Form Submission (Add/Edit)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $price = $_POST['price'];
@@ -40,11 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-if ($action === 'delete' && $id) {
-    $stmt = $pdo->prepare('DELETE FROM flowers WHERE id = ?');
-    $stmt->execute([$id]);
-    header('Location: flowers.php');
-    exit;
+if (isset($error)) {
+    echo "<script>$(document).ready(() => Swal.fire('Error', '" . addslashes($error) . "', 'error'));</script>";
 }
 ?>
 

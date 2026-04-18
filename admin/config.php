@@ -3,8 +3,8 @@
  * Site Configuration - Modern Dashboard Edition
  * Sakura Florist Solo
  */
+ob_start();
 require_once '../config/db.php';
-include 'header.php';
 
 // Fetch current config
 $stmt = $pdo->query('SELECT * FROM config LIMIT 1');
@@ -50,6 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare('UPDATE config SET title = ?, description = ?, whatsapp = ?, facebook = ?, instagram = ?, wa_message = ?, address = ?, logo = ?, favicon = ? WHERE id = ?');
     $stmt->execute([$title, $description, $whatsapp, $facebook, $instagram, $wa_message, $address, $logo, $favicon, $config['id']]);
     
+    $success = true;
+}
+
+include 'header.php';
+
+if (isset($success)) {
     echo "<script>$(document).ready(() => Swal.fire('Success', 'Configuration updated!', 'success').then(() => window.location='config.php'));</script>";
 }
 ?>

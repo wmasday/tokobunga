@@ -3,12 +3,27 @@
  * Blogs CRUD - Modern Dashboard Edition
  * Sakura Florist Solo
  */
+ob_start();
 require_once '../config/db.php';
-include 'header.php';
 
 $action = $_GET['action'] ?? 'list';
 $id = $_GET['id'] ?? null;
 
+// Handle Delete Action - MUST BE BEFORE HEADER
+if ($action === 'delete' && $id) {
+    try {
+        $stmt = $pdo->prepare('DELETE FROM blogs WHERE id = ?');
+        $stmt->execute([$id]);
+        header('Location: blogs.php');
+        exit;
+    } catch (PDOException $e) {
+        $error = "Error removing blog post.";
+    }
+}
+
+include 'header.php';
+
+// Handle Form Submission (Add/Edit)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
     $slug = $_POST['slug'];
@@ -28,11 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-if ($action === 'delete' && $id) {
-    $stmt = $pdo->prepare('DELETE FROM blogs WHERE id = ?');
-    $stmt->execute([$id]);
-    header('Location: blogs.php');
-    exit;
+if (isset($error)) {
+    echo "<script>$(document).ready(() => Swal.fire('Error', '" . addslashes($error) . "', 'error'));</script>";
 }
 ?>
 
