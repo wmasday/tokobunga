@@ -1,0 +1,11 @@
+# All routing is handled by router.php via Apache FallbackResource
+# in the Dockerfile configuration.
+
+RewriteEngine On
+RewriteBase /
+
+# Prevent direct access to .sql files for security
+<Files "*.sql">
+    Order allow,deny
+    Deny from all
+</Files>

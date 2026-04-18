@@ -1,0 +1,14 @@
+.git
+.DS_Store
+.htaccess
+# We copy .htaccess but maybe keep it local if not needed? Actually .htaccess is needed for routing.
+# Exclude non-app files
+bab1.txt
+implementation_plan.md
+task.md
+deploy.sh
+Dockerfile
+docker-compose.yml
+.dockerignore
+node_modules
+npm-debug.log

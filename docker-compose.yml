@@ -1,0 +1,37 @@
+services:
+  app:
+    build: .
+    container_name: sakura_florist_app
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - DB_HOST=db
+      - DB_NAME=tokobungasakurasolo
+      - DB_USER=root
+      - DB_PASS=sakura_pass
+    depends_on:
+      - db
+    networks:
+      - sakura-network
+
+  db:
+    image: mysql:8.0
+    container_name: sakura_florist_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: sakura_pass
+      MYSQL_DATABASE: tokobungasakurasolo
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - sakura-network
+
+networks:
+  sakura-network:
+    driver: bridge
+
+volumes:
+  mysql_data:

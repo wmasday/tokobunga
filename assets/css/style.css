@@ -1,0 +1,371 @@
+/* 
+   Sakura Florist Solo - Professional Visual Identity (Enhanced)
+   Main Color: #F94687 (Primary pink)
+   Secondary: #FFF5F8 (Light background)
+   Accent: #FDCB6E (Soft gold)
+   Font: Playfair Display & Poppins
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+:root {
+    --primary-hsl: 338, 93%, 63%; /* #F94687 */
+    --primary: hsl(var(--primary-hsl));
+    --primary-dark: hsl(338, 93%, 50%);
+    --secondary-bg: #FFF5F8;
+    --text-main: #2D3436;
+    --text-light: #636E72;
+    --white: #FFFFFF;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(249, 70, 135, 0.1), 0 10px 10px -5px rgba(249, 70, 135, 0.04);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-main);
+    background-color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, .navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* Layout Smoothing */
+section {
+    padding: 100px 0;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* Navbar Enhancement */
+.navbar {
+    padding: 20px 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+}
+
+.navbar.scrolled {
+    padding: 12px 0;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    color: var(--primary) !important;
+    font-style: italic;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: var(--text-main) !important;
+    margin: 0 15px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+}
+
+/* Hero Section Enhancement */
+#heroSection {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff 0%, #fff0f5 100%);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+#heroSection::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(249, 70, 135, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 8vw, 5rem);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin-bottom: 3rem;
+}
+
+/* Enhanced Buttons */
+.btn-whatsapp {
+    background: var(--primary);
+    color: var(--white);
+    padding: 18px 45px;
+    border-radius: 100px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 15px 30px rgba(249, 70, 135, 0.25);
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(249, 70, 135, 0.35);
+    color: var(--white);
+    background: var(--primary-dark);
+}
+
+/* Flower Cards Refinement */
+.flower-card {
+    background: var(--white);
+    border: none;
+    border-radius: 24px;
+    overflow: hidden;
+    height: 100%;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.flower-card:hover {
+    transform: translateY(-15px);
+    box-shadow: var(--shadow-lg);
+}
+
+.flower-img-wrapper {
+    position: relative;
+    height: 350px;
+    overflow: hidden;
+}
+
+.flower-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.flower-card:hover .flower-img-wrapper img {
+    transform: scale(1.1) rotate(2deg);
+}
+
+.flower-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 30px;
+}
+
+.flower-card:hover .flower-overlay {
+    opacity: 1;
+}
+
+/* Filter Interaction */
+.filter-btn {
+    border: 2px solid transparent;
+    background: var(--secondary-bg);
+    color: var(--text-light);
+    padding: 12px 30px;
+    border-radius: 100px;
+    font-weight: 500;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(249, 70, 135, 0.15);
+}
+
+/* Floating WhatsApp Button */
+.floating-wa {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 65px;
+    height: 65px;
+    background: #25D366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+}
+
+.floating-wa:hover {
+    transform: scale(1.1) rotate(15deg);
+    color: white;
+}
+
+.floating-wa::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #25D366;
+    border-radius: 50%;
+    z-index: -1;
+    animation: pulse-wa 2s infinite;
+}
+
+@keyframes pulse-wa {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Scroll To Top */
+#scrollTop {
+    position: fixed;
+    bottom: 120px;
+    right: 40px;
+    width: 50px;
+    height: 50px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+#scrollTop.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Animations Refinement */
+.section-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    section { padding: 60px 0; }
+    .hero-title { font-size: 2.5rem; }
+    .hero-subtitle { font-size: 1rem; margin-bottom: 2rem; }
+    .flower-img-wrapper { height: auto; }
+    .btn-whatsapp { padding: 14px 30px; font-size: 0.95rem; }
+    
+    .floating-wa { 
+        bottom: 20px; 
+        right: 20px; 
+        width: 55px; 
+        height: 55px; 
+        font-size: 26px; 
+    }
+    #scrollTop { 
+        bottom: 90px; 
+        right: 20px; 
+        width: 45px;
+        height: 45px;
+    }
+    
+    .navbar { 
+        background: var(--white) !important; 
+        padding: 15px 0 !important; 
+        box-shadow: var(--shadow-sm); 
+    }
+    
+    .navbar-collapse {
+        background: var(--white);
+        padding: 1rem;
+        border-radius: 12px;
+        margin-top: 15px;
+        box-shadow: var(--shadow-md);
+    }
+
+    #heroSection {
+        padding-top: 100px;
+        padding-bottom: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title { font-size: 2rem; }
+    .section-title h2 { font-size: 2rem; }
+    .flower-img-wrapper { height: auto; }
+    
+    /* Adjust carousel height for smaller screens */
+    #gallery .carousel-item img { height: 400px !important; }
+}
+
+footer .btn-outline-primary {
+    padding: 10px 15px !important;
+}

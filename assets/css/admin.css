@@ -1,0 +1,252 @@
+/**
+ * Sakura Florist Solo - Professional Admin Dashboard
+ * Modern, Clean, Calm, Cool UI
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #F94687;
+    --primary-light: rgba(249, 70, 135, 0.1);
+    --secondary: #64748b;
+    --bg-main: #f8fafc;
+    --sidebar-bg: #0f172a;
+    --sidebar-text: #94a3b8;
+    --sidebar-active: #ffffff;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+}
+
+body {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* --- Layout --- */
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    position: fixed;
+    height: 100vh;
+    transition: 0.3s;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 2rem 1.5rem;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.sidebar-brand {
+    color: var(--primary);
+}
+
+.sidebar-nav {
+    padding: 1.5rem 0.75rem;
+    flex-grow: 1;
+}
+
+.nav-link-admin {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.nav-link-admin i {
+    width: 1.5rem;
+    font-size: 1.1rem;
+    margin-right: 0.75rem;
+}
+
+.nav-link-admin:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.05);
+}
+
+.nav-link-admin.active {
+    color: #fff;
+    background: var(--primary);
+    box-shadow: 0 4px 12px rgba(249, 70, 135, 0.3);
+}
+
+.sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Main Content */
+.main-area {
+    margin-left: 260px;
+    flex-grow: 1;
+    min-width: 0;
+    transition: 0.3s;
+}
+
+/* Top Bar */
+.top-header {
+    background: #fff;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.page-title h4 {
+    margin: 0;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* --- Components --- */
+
+/* Card Styles */
+.card-admin {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-right: 1.25rem;
+}
+
+/* Colors for stats */
+.bg-soft-blue { background: #eff6ff; color: #3b82f6; }
+.bg-soft-pink { background: #fdf2f8; color: #db2777; }
+.bg-soft-green { background: #f0fdf4; color: #22c55e; }
+.bg-soft-orange { background: #fff7ed; color: #f97316; }
+
+/* Tables */
+.table-admin-container {
+    background: #fff;
+    border-radius: 1rem;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+}
+
+.table-admin {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.table-admin thead th {
+    background: #f8fafc;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table-admin tbody td {
+    padding: 1rem 1.5rem;
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.table-admin tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Forms */
+.form-label-admin {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.form-control-admin {
+    padding: 0.625rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.625rem;
+    font-size: 0.875rem;
+    transition: 0.2s;
+}
+
+.form-control-admin:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+    outline: none;
+}
+
+/* Buttons */
+.btn-admin {
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.625rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: 0.2s;
+}
+
+.btn-admin-primary {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+}
+
+.btn-admin-primary:hover {
+    background: #d13a6e;
+    transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .sidebar {
+        left: -260px;
+    }
+    .main-area {
+        margin-left: 0;
+    }
+    .sidebar.show {
+        left: 0;
+    }
+}
