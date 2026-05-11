@@ -43,10 +43,66 @@ $nav_pages = $pdo->query('SELECT title, slug FROM pages WHERE visible = 1')->fet
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($flower['name']); ?> – <?php echo htmlspecialchars($config['title'] ?? 'Sakura Florist Solo'); ?></title>
     
-    <meta name="description" content="Pesan <?php echo htmlspecialchars($flower['name']); ?> sekarang di <?php echo htmlspecialchars($config['title'] ?? 'Sakura Florist Solo'); ?>. Kualitas terbaik untuk momen spesial Anda.">
+    <meta name="description" content="Pesan <?php echo htmlspecialchars($flower['name']); ?> sekarang di <?php echo htmlspecialchars($config['title'] ?? 'Sakura Florist Solo'); ?>. Kualitas terbaik untuk momen spesial Anda di Solo.">
+    <link rel="canonical" href="https://sakurafloristsolo.id/flower/<?php echo $flower['id']; ?>">
+    
+    <!-- Open Graph Tags -->
     <meta property="og:title" content="<?php echo htmlspecialchars($flower['name']); ?> – Sakura Florist Solo">
-    <meta property="og:image" content="<?php echo (strpos($flower['image'], 'http') === 0 ? '' : '/') . $flower['image']; ?>">
+    <meta property="og:description" content="Pesan <?php echo htmlspecialchars($flower['name']); ?> sekarang di Sakura Florist Solo.">
+    <meta property="og:image" content="https://sakurafloristsolo.id/<?php echo $flower['image']; ?>">
+    <meta property="og:url" content="https://sakurafloristsolo.id/flower/<?php echo $flower['id']; ?>">
     <meta property="og:type" content="product">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo htmlspecialchars($flower['name']); ?> – Sakura Florist Solo">
+    <meta name="twitter:description" content="Pesan <?php echo htmlspecialchars($flower['name']); ?> sekarang di Sakura Florist Solo.">
+    <meta name="twitter:image" content="https://sakurafloristsolo.id/<?php echo $flower['image']; ?>">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "<?php echo htmlspecialchars($flower['name']); ?>",
+        "image": "https://sakurafloristsolo.id/<?php echo $flower['image']; ?>",
+        "description": "<?php echo htmlspecialchars(strip_tags($flower['description'] ?? 'Rangkaian bunga elegan dan indah dari Sakura Florist Solo.')); ?>",
+        "brand": {
+          "@type": "Brand",
+          "name": "Sakura Florist Solo"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://sakurafloristsolo.id/flower/<?php echo $flower['id']; ?>",
+          "priceCurrency": "IDR",
+          "price": "<?php echo $flower['price']; ?>",
+          "availability": "https://schema.org/InStock",
+          "itemCondition": "https://schema.org/NewCondition"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Beranda",
+          "item": "https://sakurafloristsolo.id/"
+        },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Katalog",
+          "item": "https://sakurafloristsolo.id/catalog"
+        },{
+          "@type": "ListItem",
+          "position": 3,
+          "name": "<?php echo htmlspecialchars($flower['name']); ?>",
+          "item": "https://sakurafloristsolo.id/flower/<?php echo $flower['id']; ?>"
+        }]
+      }
+    ]
+    </script>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">

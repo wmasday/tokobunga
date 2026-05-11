@@ -1,0 +1,13 @@
+# Robots.txt for Sakura Florist Solo
+# https://sakurafloristsolo.id
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://sakurafloristsolo.id/sitemap.xml
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /config/
+Disallow: /components/

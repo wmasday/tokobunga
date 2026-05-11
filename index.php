@@ -31,16 +31,25 @@ $wa_number = $config['whatsapp'] ?? '081567883835';
     <title><?php echo htmlspecialchars($config['title'] ?? 'Sakura Florist Solo'); ?> – Karangan Bunga Surakarta</title>
     <meta name="description" content="<?php echo htmlspecialchars($config['description'] ?? ''); ?>">
     <meta name="keywords" content="Florist Surakarta, Karangan Bunga Solo, Sakura Florist Solo, Toko Bunga Solo, Karangan Bunga Papan Solo">
+    <link rel="canonical" href="https://sakurafloristsolo.id/">
     
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="<?php echo htmlspecialchars($config['title'] ?? 'Sakura Florist Solo'); ?>">
+    <meta property="og:title" content="<?php echo htmlspecialchars($config['title'] ?? 'Sakura Florist Solo'); ?> – Karangan Bunga Surakarta">
     <meta property="og:description" content="<?php echo htmlspecialchars($config['description'] ?? ''); ?>">
-    <meta property="og:image" content="<?php echo $config['logo'] ? $config['logo'] : 'assets/img/icon.png'; ?>">
+    <meta property="og:image" content="https://sakurafloristsolo.id/<?php echo $config['logo'] ? $config['logo'] : 'assets/img/icon.png'; ?>">
+    <meta property="og:url" content="https://sakurafloristsolo.id/">
     <meta property="og:type" content="website">
 
-    <!-- Favicon -->
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo htmlspecialchars($config['title'] ?? 'Sakura Florist Solo'); ?>">
+    <meta name="twitter:description" content="<?php echo htmlspecialchars($config['description'] ?? ''); ?>">
+    <meta name="twitter:image" content="https://sakurafloristsolo.id/<?php echo $config['logo'] ? $config['logo'] : 'assets/img/icon.png'; ?>">
+
+    <!-- Favicon & Icons -->
     <?php if ($config['favicon']): ?>
-    <link rel="icon" type="image/x-icon" href="<?php echo (strpos($config['favicon'], 'http') === 0 ? '' : '/') . $config['favicon']; ?>">
+    <link rel="icon" type="image/x-icon" href="/<?php echo $config['favicon']; ?>">
+    <link rel="apple-touch-icon" href="/<?php echo $config['favicon']; ?>">
     <?php endif; ?>
 
     <!-- Bootstrap 5 CSS -->
@@ -54,22 +63,55 @@ $wa_number = $config['whatsapp'] ?? '081567883835';
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Florist",
-      "name": "<?php echo htmlspecialchars($config['title'] ?? 'Sakura Florist Solo'); ?>",
-      "image": "<?php echo $config['logo'] ? $config['logo'] : ''; ?>",
-      "url": "<?php echo (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>",
-      "telephone": "<?php echo $wa_number; ?>",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "<?php echo htmlspecialchars($config['address'] ?? 'Surakarta'); ?>",
-        "addressLocality": "Solo",
-        "addressRegion": "Jawa Tengah",
-        "postalCode": "57126",
-        "addressCountry": "ID"
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "Florist",
+        "name": "<?php echo htmlspecialchars($config['title'] ?? 'Sakura Florist Solo'); ?>",
+        "image": "https://sakurafloristsolo.id/<?php echo $config['logo'] ? $config['logo'] : 'assets/img/icon.png'; ?>",
+        "@id": "https://sakurafloristsolo.id/",
+        "url": "https://sakurafloristsolo.id/",
+        "telephone": "<?php echo $wa_number; ?>",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "<?php echo htmlspecialchars($config['address'] ?? 'Surakarta'); ?>",
+          "addressLocality": "Solo",
+          "addressRegion": "Jawa Tengah",
+          "postalCode": "57126",
+          "addressCountry": "ID"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -7.5666,
+          "longitude": 110.8167
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Beranda",
+          "item": "https://sakurafloristsolo.id/"
+        }]
       }
-    }
+    ]
     </script>
 </head>
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">

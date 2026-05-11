@@ -37,6 +37,66 @@ $nav_pages = $pdo->query('SELECT title, slug FROM pages WHERE visible = 1')->fet
     
     <title><?php echo htmlspecialchars($blog['title']); ?> – <?php echo htmlspecialchars($config['title'] ?? 'Sakura Florist Solo'); ?></title>
     <meta name="description" content="<?php echo htmlspecialchars($blog['excerpt']); ?>">
+    <link rel="canonical" href="https://sakurafloristsolo.id/blog/<?php echo $blog['slug']; ?>">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="<?php echo htmlspecialchars($blog['title']); ?> – Sakura Florist Solo">
+    <meta property="og:description" content="<?php echo htmlspecialchars($blog['excerpt']); ?>">
+    <meta property="og:image" content="https://sakurafloristsolo.id/<?php echo $blog['image']; ?>">
+    <meta property="og:url" content="https://sakurafloristsolo.id/blog/<?php echo $blog['slug']; ?>">
+    <meta property="og:type" content="article">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo htmlspecialchars($blog['title']); ?> – Sakura Florist Solo">
+    <meta name="twitter:description" content="<?php echo htmlspecialchars($blog['excerpt']); ?>">
+    <meta name="twitter:image" content="https://sakurafloristsolo.id/<?php echo $blog['image']; ?>">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "<?php echo htmlspecialchars($blog['title']); ?>",
+        "image": "https://sakurafloristsolo.id/<?php echo $blog['image']; ?>",
+        "datePublished": "<?php echo date('c', strtotime($blog['created_at'])); ?>",
+        "author": {
+          "@type": "Organization",
+          "name": "Sakura Florist Solo"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Sakura Florist Solo",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://sakurafloristsolo.id/<?php echo $config['logo']; ?>"
+          }
+        },
+        "description": "<?php echo htmlspecialchars($blog['excerpt']); ?>"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Beranda",
+          "item": "https://sakurafloristsolo.id/"
+        },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://sakurafloristsolo.id/blog"
+        },{
+          "@type": "ListItem",
+          "position": 3,
+          "name": "<?php echo htmlspecialchars($blog['title']); ?>",
+          "item": "https://sakurafloristsolo.id/blog/<?php echo $blog['slug']; ?>"
+        }]
+      }
+    ]
+    </script>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">

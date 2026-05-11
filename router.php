@@ -10,6 +10,12 @@ if (file_exists(__DIR__ . $uri) && !is_dir(__DIR__ . $uri)) {
     return false;
 }
 
+// 1b. Sitemap route
+if ($uri === '/sitemap.xml') {
+    require 'sitemap.php';
+    exit;
+}
+
 // 2. Clean URLs for Blog Listing
 if ($uri === '/blog' || $uri === '/blog/') {
     require 'blog.php';
